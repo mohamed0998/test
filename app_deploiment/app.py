@@ -1,9 +1,11 @@
 import numpy as np
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, render_template
 import pickle
+from sklearn.feature_extraction.text import CountVectorizer
+
 
 app = Flask(__name__)
-model = pickle.load(open('model.pkl', 'rb'))
+model = pickle.load(open('model.pkl','rb'))
 
 @app.route('/')
 def home():
@@ -11,12 +13,9 @@ def home():
 
 @app.route('/predict',methods=['POST'])
 def predict():
-    '''
-    For rendering results on HTML GUI
-    '''
-    int_features = [int(x) for x in request.form.values()]
-    final_features = [np.array(int_features)]
-    prediction = model.predict(final_features)
+    vectorizer = CountVectorizer()
+    features = vectorizer.fit_transform(request.form.values()).toarray(26783)
+    prediction = model.predict(features)
 
     output = round(prediction[0], 2)
 
@@ -24,3 +23,5 @@ def predict():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
