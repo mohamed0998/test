@@ -3,7 +3,7 @@
 <!--From https://codepen.io/frytyler/pen/EGdtg-->
 <head>
   <meta charset="UTF-8">
-  <title>credit App</title>
+  <title>Adult/Ados App</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
@@ -14,14 +14,11 @@
 
 <body>
  <div class="login">
-	<h1>Simulation de votre crédit</h1>
+	<h1>Adulte ou Ados</h1>
 
      <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}"method="post">
-    	<input type="text" name="Credit_History" placeholder="Credit_History" required="required" />
-        <input type="text" name="Married" placeholder="Married" required="required" />
-		<input type="text" name="CoapplicantIncome" placeholder="CoapplicantIncome" required="required" />
-
+        <input type="text" name="phrase" placeholder="phrase" required="required" />
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     </form>
 
