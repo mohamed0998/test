@@ -14,7 +14,7 @@ def home():
 @app.route('/predict',methods=['POST'])
 def predict():
     vectorizer = CountVectorizer()
-    features = vectorizer.fit_transform(request.form.values()).toarray(26783)
+    features = vectorizer.fit_transform(request.form.values())
     prediction = model.predict(features)
 
     output = round(prediction[0], 2)
